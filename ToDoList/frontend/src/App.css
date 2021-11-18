@@ -1,0 +1,47 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-color {
+  background-color: #e3f2fd;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user {
+  min-width: 300px;
+  margin: 40px;
+}
+
+.page-header {
+  padding: 40px 20px;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.project-property {
+  width: 33%;
+  font-family: "Times New Roman", serif;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.middle-property {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.footerH {
+   background-color: rgba(0, 0, 0, 0.2);
+}
+
