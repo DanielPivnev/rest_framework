@@ -22,9 +22,10 @@ const TodoGroup = ({todos, project, users}) => {
         <div className="project-todos">
             <h3>{project.name}</h3>
             {todos.map((todo) => {
-                todo = todos.find((todo) => todo.project === project.id);
-
-                return <TodoItem todo={todo}/>})}
+                if (todo.project === project.id) {
+                    return <TodoItem todo={todo} users={users} />;
+                }
+            })}
         </div>
     )
 }
