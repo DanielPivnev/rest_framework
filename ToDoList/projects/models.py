@@ -12,6 +12,7 @@ class Project(models.Model):
 
 class ToDo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100, blank=True, null=True)
     text = models.CharField(max_length=1000)
     active = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
