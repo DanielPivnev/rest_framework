@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'projects',
     'django_filters',
     'rest_framework.authtoken',
+    'drf_yasg'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -156,6 +157,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated'
     ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
