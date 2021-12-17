@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Home = ({users}) => {
+const Home = ({}) => {
     return (
         <div className="homeSlides">
             <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">

@@ -11,5 +11,5 @@ class UserModelViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
 
     def get_serializer_class(self):
         if self.request.version == 'v2':
-            return UserModelSerializer
-        return UserModelSerializerBase
+            return UserModelSerializerBase
+        return UserModelSerializer

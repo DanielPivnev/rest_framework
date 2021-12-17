@@ -4,7 +4,7 @@ import React from 'react'
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {login: '', password: ''};
+        this.state = {username: '', password: ''};
     }
 
     handleChange(event) {
@@ -16,8 +16,8 @@ class LoginForm extends React.Component {
     }
 
     handleSubmit(event) {
-        this.props.get_token(this.state.login, this.state.password);
-        console.log(this.state.token)
+        this.props.get_token(this.state.username, this.state.password);
+        // console.log(this.state.username, this.state.password);
         event.preventDefault();
     }
 
@@ -27,8 +27,8 @@ class LoginForm extends React.Component {
                 <form className="form-area" onSubmit={(event) => this.handleSubmit(event)}>
                     <div className="form-group form-part">
                         <label className="label" htmlFor="exampleInputEmail1">Username</label>
-                        <input type="text" className="form-control" aria-describedby="emailHelp"
-                               placeholder="Username" name="login" value={this.state.login} autoComplete="username"
+                        <input type="text" className="form-control" placeholder="Username"
+                               name="username" value={this.state.username} autoComplete="username"
                                onChange={(event) => this.handleChange(event)}/>
                     </div>
                     <div className="form-group form-part">
