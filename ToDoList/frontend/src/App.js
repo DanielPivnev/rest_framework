@@ -1,17 +1,21 @@
 import React from 'react';
 import './App.css';
 import UserList from "./components/User.js";
-import axios from "axios";
-import {HashRouter, Link, Route, Switch} from 'react-router-dom';
 import ProjectList from "./components/Project.js";
-import TodoList from "./components/Todo";
+import TodoList from "./components/Todo.js";
+import LoginForm from "./components/Auth.js";
+import axios from "axios";
+import {HashRouter, Link, Redirect, Route, Switch} from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import Home from "./components/Home.js";
+
 
 const NotFound404 = ({location}) => {
     return (
         <div>
             <h1>Страница по адресу '{location.pathname}' не найдена</h1>
         </div>
-    )
+    );
 }
 
 class App extends React.Component {
@@ -21,14 +25,61 @@ class App extends React.Component {
         this.state = {
             'users': [],
             'projects': [],
-            'todos': []
+            'todos': [],
+            'token': ''
         }
     }
 
+    set_token(token) {
+        const cookies = new Cookies();
+        cookies.set('token', token);
+        this.setState({'token': token}, () => this.load_data());
+        // console.log(this.state.token);
 
-    componentDidMount() {
 
-        axios.get('http://127.0.0.1:8000/api/users/')
+    }
+
+    is_authenticated() {
+        return this.state.token !== '';
+    }
+
+    logout() {
+        this.set_token('');
+        this.load_data();
+        console.log(this.state.token);
+    }
+
+    get_token_from_storage() {
+        const cookies = new Cookies();
+        const token = cookies.get('token');
+        this.setState({'token': token}, () => this.load_data());
+    }
+
+    get_token(username, password) {
+        // console.log('-----------------------\n token');
+        axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username, password: password})
+            .then(response => {
+                console.log(response.data['token']);
+                this.set_token(response.data['token']);
+            }).catch(error => alert('Неверный логин или пароль'));
+    }
+
+    get_headers() {
+        let headers = {
+            'Content-Type': 'application/json',
+            'Authorization': ''
+        };
+        if (this.state.token !== '') {
+            headers['Authorization'] = 'Token ' + this.state.token;
+        }
+        return headers;
+    }
+
+
+    load_data() {
+        const headers = this.get_headers();
+        console.log(headers)
+        axios.get('http://127.0.0.1:8000/api/users/', {headers})
             .then(
                 response => {
                     const users = response.data;
@@ -39,10 +90,10 @@ class App extends React.Component {
                         }
                     )
                 }).catch(e => {
-            console.log(e)
-        })
+            console.log(e);
+        });
 
-        axios.get('http://127.0.0.1:8000/api/projects/')
+        axios.get('http://127.0.0.1:8000/api/projects/', {headers})
             .then(
                 response => {
                     const projects = response.data;
@@ -53,10 +104,10 @@ class App extends React.Component {
                         }
                     )
                 }).catch(e => {
-            console.log(e)
-        })
+            console.log(e);
+        });
 
-        axios.get('http://127.0.0.1:8000/api/todos/')
+        axios.get('http://127.0.0.1:8000/api/todos/', {headers})
             .then(
                 response => {
                     const todos = response.data;
@@ -67,9 +118,12 @@ class App extends React.Component {
                         }
                     )
                 }).catch(e => {
-            console.log(e)
-        })
+            console.log(e);
+        });
+    }
 
+    componentDidMount() {
+        this.get_token_from_storage();
     }
 
     render() {
@@ -77,49 +131,62 @@ class App extends React.Component {
             <div className="App">
                 <div>
                     <HashRouter>
-                        <nav className="navbar navbar-expand-lg navbar-light bg-light nav-color">
-                            <div className="container-fluid">
-                                <a className="navbar-brand" href="#">ToDo List</a>
-                                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#navbarNav"
-                                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span className="navbar-toggler-icon"/>
-                                </button>
-                                <div className="collapse navbar-collapse" id="navbarNav">
-                                    <ul className="navbar-nav">
-                                        <li className="nav-item">
-                                            <Link to='/'>
-                                                <a className="nav-link active" href="#">Home</a>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to='/todos'>
-                                                <a className="nav-link" href="#">ToDo‘s</a>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to='/projects'>
-                                                <a className="nav-link" href="#">Projects</a>
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link to='/users'>
-                                                <a className="nav-link" href="#">Users</a>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <nav className="navbar navbar-expand-lg navbar-light bg-light nav-color main-nav">
+                            <a className="navbar-brand" href="#">ToDo List</a>
+                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNav"
+                                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span className="navbar-toggler-icon"/>
+                            </button>
+                            <div className="collapse navbar-collapse" id="navbarNav">
+                                <ul className="navbar-nav">
+                                    <li className="nav-item">
+                                        <Link to='/'>
+                                            <a className="nav-link active" href="#">Home</a>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to='/todos'>
+                                            <a className="nav-link" href="#">Todos</a>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to='/projects'>
+                                            <a className="nav-link" href="#">Projects</a>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to='/users'>
+                                            <a className="nav-link" href="#">Users</a>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to='/login'>
+                                            {this.is_authenticated() ?
+                                                <div>
+                                                    <a className="nav-link" onClick={() => this.logout()}>Logout</a>
+                                                    <Redirect to='/'></Redirect>
+                                                </div>
+                                                :
+                                                <Link to='/login'><a className="nav-link" href="#">Login</a></Link>
+                                            }
+                                        </Link>
+                                    </li>
+                                </ul>
                             </div>
                         </nav>
 
 
                         <Switch>
+                            <Route exact path='/' component={() => <Home/>}/>
                             <Route exact path='/users' component={() => <UserList users={this.state.users}/>}/>
                             <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}
                                                                                         users={this.state.users}/>}/>
                             <Route exact path='/todos' component={() => <TodoList todos={this.state.todos}
                                                                                   projects={this.state.projects}
                                                                                   users={this.state.users}/>}/>
+                            <Route exact path='/login' component={() => <LoginForm
+                                get_token={(username, password) => this.get_token(username, password)}/>}/>
                             <Route component={NotFound404}/>
                         </Switch>
                     </HashRouter>
@@ -131,7 +198,7 @@ class App extends React.Component {
                     </div>
                 </footer>
             </div>
-        )
+        );
     }
 }
 
