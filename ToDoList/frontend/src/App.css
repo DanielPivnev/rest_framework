@@ -45,3 +45,33 @@
    background-color: rgba(0, 0, 0, 0.2);
 }
 
+.main-nav {
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.form-area {
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  background-color: ghostwhite;
+  min-width: 40vw;
+  padding: 30px 40px 30px 40px;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.form-part {
+  margin-bottom: 20px;
+}
+
+.submit-btn {
+  margin-top: 30px;
+}
