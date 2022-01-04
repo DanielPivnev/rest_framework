@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import HyperlinkedModelSerializer
 
-from users.serializers import UserModelSerializer
+from ..users.serializers import UserModelSerializer
 from .models import Project, ToDo
 
 

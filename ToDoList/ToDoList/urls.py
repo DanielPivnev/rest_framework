@@ -21,8 +21,8 @@ from rest_framework import permissions
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
-from users.views import UserModelViewSet
-from projects.views import ProjectModelViewSet, ToDoModelViewSet
+from ..users.views import UserModelViewSet
+from ..projects.views import ProjectModelViewSet, ToDoModelViewSet
 
 
 router = DefaultRouter()
