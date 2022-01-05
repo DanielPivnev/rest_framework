@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from ..users.models import User
+from ToDoList.users.models import User
 
 
 class Project(models.Model):
