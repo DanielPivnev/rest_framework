@@ -1,0 +1,145 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navigation {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100vw;
+}
+
+.nav-color {
+  background-color: #e3f2fd;
+}
+
+.NotFound404 {
+  margin: 5vw;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user {
+  min-width: 300px;
+  margin: 40px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px;
+}
+
+.search {
+  width: 20vw;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.project-property {
+  width: 33%;
+  font-family: "Times New Roman", serif;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.middle-property {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.footerH {
+   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.main-nav {
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.form-create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.form-create-area {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  padding: 30px 40px;
+  min-width: 80vw;
+}
+
+.btn-create {
+  background-color: limegreen;
+}
+
+.btn-delete {
+  text-align: center;
+  background-color: #d50202;
+}
+
+.btn-delete:hover {
+  cursor: pointer;
+}
+
+.form-area {
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  background-color: ghostwhite;
+  min-width: 40vw;
+  padding: 30px 40px 30px 40px;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.form-part {
+  margin-bottom: 20px;
+}
+
+.submit-btn {
+  margin-top: 30px;
+}
+
+.project-todos {
+  margin: 30px;
+}
+
+.todos-group {
+  display: flex;
+  margin: 20px 10px;
+  flex-wrap: wrap;
+}
+
+.todo {
+  max-width: 400px;
+  margin: 20px 10px;
+
+}
+
+.todo-header {
+  background-color: darkgray;
+}
+
+.btn-todo {
+  margin-left: 20px;
+}

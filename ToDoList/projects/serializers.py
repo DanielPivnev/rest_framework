@@ -1,20 +1,16 @@
-from rest_framework import serializers
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
-from users.serializers import UserModelSerializer
 from .models import Project, ToDo
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
-    employees = UserModelSerializer(many=True)
+class ProjectModelSerializer(ModelSerializer):
 
     class Meta:
         model = Project
         fields = '__all__'
 
 
-class ToDoModelSerializer(HyperlinkedModelSerializer):
-    user = UserModelSerializer()
+class ToDoModelSerializer(ModelSerializer):
 
     class Meta:
         model = ToDo

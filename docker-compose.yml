@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:13.1
+    privileged: true
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: daniel
+      POSTGRES_PASSWORD: abcd1234
+      POSTGRES_DB: db
+  beckend:
+    build: './ToDoList'
+    privileged: true
+    ports:
+      - "8080:8080"
+    command:
+      bash -c "
+      python3.9 manage.py migrate &&
+      python3.9 manage.py create_user &&
+      python3.9 manage.py runserver 0.0.0.0:8080
+      "
+    depends_on:
+      - db
+  nginx:
+    build: './nginx'
+    ports:
+      - "8000:80"
+    depends_on:
+      - beckend
+  fronend:
+    build: './frontend'
+    ports:
+      - "70:70"
+    depends_on:
+      - nginx
