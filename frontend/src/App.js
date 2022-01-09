@@ -231,21 +231,33 @@ class App extends React.Component {
                                             <a className="nav-link" href="#">Home</a>
                                         </Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to='/todos'>
-                                            <a className="nav-link" href="#">Todos</a>
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to='/projects'>
-                                            <a className="nav-link" href="#">Projects</a>
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to='/users'>
-                                            <a className="nav-link" href="#">Users</a>
-                                        </Link>
-                                    </li>
+                                    {this.is_authenticated() ?
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to='/todos'>
+                                                <a className="nav-link" href="#">Todos</a>
+                                            </Link>
+                                        </li>
+                                        :
+                                        <li/>
+                                    }
+                                    {this.is_authenticated() ?
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to='/projects'>
+                                                <a className="nav-link" href="#">Projects</a>
+                                            </Link>
+                                        </li>
+                                        :
+                                        <li/>
+                                    }
+                                    {this.is_authenticated() ?
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to='/users'>
+                                                <a className="nav-link" href="#">Users</a>
+                                            </Link>
+                                        </li>
+                                        :
+                                        <li/>
+                                    }
                                     <li className="nav-item">
                                         {
                                             this.is_authenticated() ?
@@ -271,11 +283,15 @@ class App extends React.Component {
                                 projects={this.state.projects} users={this.state.users}
                                 delete_project={(id, user_id) => this.delete_project(id, user_id)}
                                 load={() => this.load_data()}/>
-                            } />
+                            }/>
                             <Route exact path='/todos' component={() => <TodoList
                                 todos={this.state.todos} projects={this.state.projects} users={this.state.users}
-                                set_project={(project) => {this.set_project(project)}}
-                                delete_todo={(id, todo_user_id) => {this.delete_todo(id, todo_user_id)}}/>}/>
+                                set_project={(project) => {
+                                    this.set_project(project)
+                                }}
+                                delete_todo={(id, todo_user_id) => {
+                                    this.delete_todo(id, todo_user_id)
+                                }}/>}/>
                             <Route exact path='/create-todo' component={() => <CreateTodoForm
                                 create_todo={(title, text) => this.create_todo(title, text)}/>}/>
                             <Route exact path='/create-project' component={() => <CreateProjectForm

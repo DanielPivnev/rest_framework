@@ -13,14 +13,14 @@ const Home = ({}) => {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval="5000">
-                        <img src="media/artificial-intelligence-3706562_1280.webp" className="img d-block w-100 " alt="..."/>
+                        <img src="artificial-intelligence-3706562_1280.webp" className="img d-block w-100 " alt="..."/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>First slide label</h5>
                                 <p>Some representative placeholder content for the first slide.</p>
                             </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="5000">
-                        <img src="media/web-3706563__480.webp" className="img d-block w-100" alt="..."/>
+                        <img src="web-3706563__480.webp" className="img d-block w-100" alt="..."/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Second slide label</h5>
                                 <p>Some representative placeholder content for the second slide.</p>
