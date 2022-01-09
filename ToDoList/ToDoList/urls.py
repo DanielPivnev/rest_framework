@@ -21,9 +21,11 @@ from rest_framework import permissions
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 from graphene_django.views import GraphQLView
+from django.views.generic import TemplateView
 
-from ..users.views import UserModelViewSet
-from ..projects.views import ProjectModelViewSet, ToDoModelViewSet
+
+from users.views import UserModelViewSet
+from projects.views import ProjectModelViewSet, ToDoModelViewSet
 
 
 router = DefaultRouter()
@@ -50,6 +52,7 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token),
     path('swagger/', schema_view.with_ui('swagger')),
     path('swagger<str:format>/', schema_view.without_ui()),
-    path("graphql/", GraphQLView.as_view(graphiql=True)),
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
+    path('', TemplateView.as_view(template_name='index.html'))
 ]
 

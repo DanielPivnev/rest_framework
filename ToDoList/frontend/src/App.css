@@ -5,8 +5,18 @@
   justify-content: space-between;
 }
 
+.navigation {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100vw;
+}
+
 .nav-color {
   background-color: #e3f2fd;
+}
+
+.NotFound404 {
+  margin: 5vw;
 }
 
 .users {
@@ -20,7 +30,13 @@
 }
 
 .page-header {
+  display: flex;
+  justify-content: space-between;
   padding: 40px 20px;
+}
+
+.search {
+  width: 20vw;
 }
 
 .project {
@@ -56,6 +72,34 @@
   height: 70vh;
 }
 
+.form-create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.form-create-area {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  padding: 30px 40px;
+  min-width: 80vw;
+}
+
+.btn-create {
+  background-color: limegreen;
+}
+
+.btn-delete {
+  text-align: center;
+  background-color: #d50202;
+}
+
+.btn-delete:hover {
+  cursor: pointer;
+}
+
 .form-area {
   border: 1px solid lightskyblue;
   border-radius: 5px;
@@ -74,4 +118,28 @@
 
 .submit-btn {
   margin-top: 30px;
+}
+
+.project-todos {
+  margin: 30px;
+}
+
+.todos-group {
+  display: flex;
+  margin: 20px 10px;
+  flex-wrap: wrap;
+}
+
+.todo {
+  max-width: 400px;
+  margin: 20px 10px;
+
+}
+
+.todo-header {
+  background-color: darkgray;
+}
+
+.btn-todo {
+  margin-left: 20px;
 }

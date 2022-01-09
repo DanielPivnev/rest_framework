@@ -10,7 +10,6 @@ from .paginators import ProjectPaginator, ToDoPaginator
 
 
 class ProjectModelViewSet(ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectPaginator
@@ -18,7 +17,6 @@ class ProjectModelViewSet(ModelViewSet):
 
 
 class ToDoModelViewSet(ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
     pagination_class = ToDoPaginator

@@ -6,7 +6,6 @@ from .serializers import UserModelSerializer, UserModelSerializerBase
 
 
 class UserModelViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
-    permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
 
     def get_serializer_class(self):
